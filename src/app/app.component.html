@@ -25,22 +25,21 @@
 </div>
     
 
-<div class="content" *ngIf="false">
+<div class="content" *ngIf="true">
     <div fxLayout="row wrap" fxLayoutGap="16px">
-      <div fxFlex="25%" *ngFor="let num of [1,2,3,4,5,6,7]">
+      <div fxFlex="25%" *ngFor="let location of locationList">
         <mat-card class="mat-elevation-z4" >
           <mat-card-header>
-            <mat-card-title>Mountains {{num}}</mat-card-title>
+            <mat-card-title>{{location.title}}</mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <img mat-card-image src="assets/images/weather.jpg">
           <mat-card-content>
             <p>
-              The Himalayas is a mountain range in Asia.
+              City(Lat, Lng): {{location.latt_long}}
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
+            <button mat-button (click)="openDetails(location.woeid)">DETAILS</button>
           </mat-card-actions>
         </mat-card>
       </div>
