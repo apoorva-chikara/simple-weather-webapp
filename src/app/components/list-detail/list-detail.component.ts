@@ -30,7 +30,6 @@ export class ListDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.addDatatoDetails(this.data?.response[0]);
   }
  
@@ -101,7 +100,7 @@ export class ListDetailComponent implements OnInit {
     }
   }
 
-
+// It will help to get the current indexing of the current data on view
   private getIndexOfCurrentData(data: LocationDetails) {
       const index = this.data.response.findIndex(el => data.id === el.id);
       return index;

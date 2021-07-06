@@ -18,6 +18,12 @@ export class ErrorhandlingService {
     private matDialog: MatDialog
   ) { }
 
+  /**
+   * 
+   * @param error - tells what to display
+   * Opens an error modal which gives details to the user,
+   * can be created based on different custom error methods
+   */
   errorHandling(error: ErrorInternal | ErrorAPI) {
       const dialogRef = this.matDialog.open(ErrorsComponent, {
         width : '400px',

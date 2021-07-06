@@ -46,6 +46,13 @@ export class LocationListsService {
      })
  }
 
+ /**
+   * 
+   * @param data - check if the data is present or not
+   * @returns 0 | 1
+   *   if the function returns 0, it means there is no data form the API for the
+   *   user input data in the form else it will retun 1 stating the data is valid.
+   */
  private validateResponseForError(data : Array<Location> | []) {
        if(!data.length) {
             return 0;

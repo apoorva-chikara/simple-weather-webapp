@@ -26,6 +26,7 @@ import { ErrorAPI } from './interfaces/error.interface';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'weather-app';
   public searchValue: string = '';
   public locationList: Array<Location> = [];
@@ -38,8 +39,14 @@ export class AppComponent {
     private errorhandlingService: ErrorhandlingService
   ) {}
 
+  /**
+   * 
+   * @param : searchBox - input from the user
+   * It will request the data from Location API based on the input from 
+   * the user, if there is no input an alert is shown
+   */
   public async logForm({searchBox}) {
-    console.log(searchBox);
+
      if (!searchBox) {
        alert('Please enter a valid city name');
      }
@@ -55,7 +62,7 @@ export class AppComponent {
       this.locationList.push(...res);
 
      } catch (error) {
-       console.log(error.message);
+      
        const message: ErrorAPI = { Message: error.message, statusCode: 404};
        this.errorhandlingService.errorHandling(message);
 
@@ -65,7 +72,7 @@ export class AppComponent {
   }
 
   /**
-   *  Opening Dialog with details
+   *  Opening Dialog with details for the selected location
    */
   public async openDetails(locationId: string) {
     try {
