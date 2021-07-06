@@ -1,0 +1,62 @@
+
+
+  <div class="container">
+    <div class="search-input" style="position: relative; top: 40px;">
+     
+      <form #form="ngForm" (submit)="logForm(form.value)">
+        <label>
+          <input type="text" name="searchBox" required ngModel>
+          <ul>
+            <li s>S</li>
+            <li e>e</li>
+            <li a>a</li>
+            <li r>r</li>
+            <li c>c</li>
+            <li h>h</li>
+          </ul>
+        </label>
+        <button type="submit" style="width: 92px;
+        height: 65px;
+        position: absolute;
+        left: 414px;">gell</button>
+
+      </form>
+      
+</div>
+    
+
+<div class="content" *ngIf="false">
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+      <div fxFlex="25%" *ngFor="let num of [1,2,3,4,5,6,7]">
+        <mat-card class="mat-elevation-z4" >
+          <mat-card-header>
+            <mat-card-title>Mountains {{num}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <mat-card-content>
+            <p>
+              The Himalayas is a mountain range in Asia.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+<div class="page-footer" style="position: fixed;
+bottom: 10px;
+right: 0px;">
+  <div class="container">
+    <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">Apoorva Chikara</a>
+    </small>
+  </div>
+</div>
+
