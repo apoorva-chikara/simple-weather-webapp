@@ -10,6 +10,16 @@
 
 }
 
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+  stroke:black;
+}
+
+label span {
+    position: absolute;
+    top: 22px;
+    left: 370px;
+}
+
 mat-card-actions button {
   width: 92px; 
     /* height: 65px; */
@@ -175,11 +185,11 @@ mat-card-actions button {
   }
 
   mat-spinner {
-    width: 100px;
+    width: 50px;
     position: absolute;
     top: 200px;
     left: 0;
     right: 0;
     margin: auto;
-    height: 100px;
+    height: 50px;
   }

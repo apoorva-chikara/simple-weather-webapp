@@ -5,7 +5,8 @@
      
       <form #form="ngForm" (submit)="logForm(form.value)">
         <label>
-          <input type="text" name="searchBox" required ngModel>
+          <input type="text" name="searchBox" required ngModel #searchValue>
+          <span *ngIf="searchValue.value.length > 0" (click)="resetForm(form)">&#x2715;</span>
           <ul>
             <li s>S</li>
             <li e>e</li>
@@ -29,7 +30,7 @@
           <mat-card-header>
             <mat-card-title>{{location.title}}</mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="assets/images/weather.jpg">
+          <img mat-card-image src="assets/images/weather1.jpeg">
           <mat-card-content>
             <p>
               City(Lat, Lng): {{location.latt_long}}
@@ -43,15 +44,17 @@
     </div>
     </div>
 </div>
+
 <mat-spinner color="#b68200" *ngIf="showSpinner"></mat-spinner>
-<!-- <app-list-detail></app-list-detail> -->
 
 <div class="page-footer" style="position: fixed;
-bottom: 10px;
-right: 0px;">
+bottom: 0px;
+right: 0px;
+width: 100px;
+height: 100px;">
   <div class="container">
-    <small>Made with <span>❤</span> by <a href="http://georgemartsoukos.com/" target="_blank">Apoorva Chikara</a>
-    </small>
+    <div>Made with <span>❤</span> by <a href="https://stackoverflow.com/users/7025699/apoorva-chikara?tab=profile" target="_blank">Apoorva Chikara</a>
+    </div>
   </div>
 </div>
 

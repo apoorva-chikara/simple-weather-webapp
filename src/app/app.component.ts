@@ -19,6 +19,7 @@ import { LocationDetails, NoDetailsLocation } from "./interfaces/location.detail
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { ErrorhandlingService } from './services/ErrorHandling/errorhandling.service';
 import { ErrorAPI } from './interfaces/error.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -94,4 +95,11 @@ export class AppComponent {
     
   }
 
+
+  /**
+   * It will reset the form on `X` click
+   */
+  public resetForm(form: NgForm) {
+       form.resetForm();
+  }
 }

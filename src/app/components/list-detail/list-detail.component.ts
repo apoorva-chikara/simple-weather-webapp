@@ -51,7 +51,7 @@ export class ListDetailComponent implements OnInit {
                Month = ValueConstant.Months[date.getMonth()],
                Year = date.getFullYear();
                
-         data.Day = Day, data.Month = Month, data.Year = Year;
+         data.Day = Day, data.Month = `${date.getDay()} ${Month}`, data.Year = Year;
          data.currentTime = this.generateCurrentTime();
          return data
 
