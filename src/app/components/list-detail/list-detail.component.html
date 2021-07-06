@@ -1,1 +1,39 @@
-<p>list-detail works!</p>
+<div class="wrapper">
+    <div class="widget-container">
+      <div class="top-left">
+        <h1 class="city" id="city">Weather Widget App</h1>
+        <h2 id="day">{{details.Day}}</h2>
+        <h3 id="date">{{details.Month}}, {{details.Year}}</h3>
+        <h3 id="time">{{details.currentTime}}</h3>
+  <!--       <a target="_blank" href="https://codepen.io/myleschuahiock/"><p id="codepen-link">codepen.io/myleschuahiock</p></a> -->
+        <p class="geo"></p>
+      </div>
+      <div class="top-right">
+        <h1 id="weather-status">{{details.weather_state_abbr}} / {{details.weather_state_name}}</h1>
+        <img class="weather-icon" src="https://myleschuahiock.files.wordpress.com/2016/02/sunny2.png">
+      </div>
+      <div class="horizontal-half-divider"></div>
+      <div class="bottom-left">
+        <h1 id="temperature">{{fixDecimal(details.the_temp)}}</h1>
+        <h2 id="celsius">°C</h2>
+      </div>
+      <div class="vertical-half-divider"></div>
+      <div class="bottom-right">
+        <dl>
+            <dt>Wind Speed</dt>
+            <dd>{{fixDecimal(details.wind_speed)}} Km/h</dd>
+            <dt>Humidity</dt>
+            <dd>{{details.humidity}} %</dd>
+            <dt>Pressure</dt>
+            <dd>{{details.air_pressure}} hPa</dd>
+            <dt>Wind Direction</dt>
+            <dd>{{details.wind_direction_compass}}</dd>
+            <dt>Visibility</dt>
+            <dd>{{fixDecimal(details.visibility)}}</dd>
+          </dl>
+      </div>
+    </div>
+  </div>
+
+<button style="position: relative; bottom: 200px; left: 635px;" (click)="nextDateData(details)"><span>&#62;</span></button>
+<button style="position: relative; right: 35px; bottom: 197px;" (click)="prevDateData(details)"><span>&#60;</span></button>

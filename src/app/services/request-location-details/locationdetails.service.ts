@@ -39,16 +39,17 @@ export class LocationdetailsService {
   * based on the locationID received from Location list
   */
 
-  public getLocationDetails(locationId: string) {
+  public getLocationDetails(locationId: string): Observable<LocationDetails> {
          const uriPath = `location/${locationId}`;
 
          return new Observable((observer) => {
                 const URL = `${URLconstant.WeatherApiBaseUrl}${uriPath}`;
-                this._http.get<LocationDetails | NoDetailsLocation>(URL)
-                  .pipe(catchError(err => of([])))
-                  .subscribe((data : LocationDetails | NoDetailsLocation) => {
+                this._http.get<any>(URL)
+                  .pipe(catchError(err => {throw new Error('API is not responding')}))
+                  .subscribe((data) => {
                       this.validateResponseForError(data) ? (() => {
-                      observer.next(data);
+                      const { consolidated_weather } = data;
+                      observer.next(consolidated_weather);
                       observer.complete();
                       })() : observer.error('No Details Found for this location');
                 });

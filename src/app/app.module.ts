@@ -16,12 +16,22 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { MatCardModule } from "@angular/material/card";
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ListDetailComponent } from './components/list-detail/list-detail.component';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+
+
+/**
+ * Custom Components
+ */
+
+ import { ListDetailComponent } from './components/list-detail/list-detail.component';
+import { ErrorsComponent } from './components/errors/errors/errors.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListDetailComponent
+    ListDetailComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +39,18 @@ import { ListDetailComponent } from './components/list-detail/list-detail.compon
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef, useValue: {}
+    },
+    {
+      provide: MAT_DIALOG_DATA, useValue :{}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

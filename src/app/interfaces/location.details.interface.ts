@@ -14,6 +14,10 @@ export interface LocationDetails {
     humidity?: number,
     visibility?: number,
     predictability?: number
+    Day?: string,
+    Month?: string,
+    Year?: number
+    currentTime? : string 
 }
 
 export interface NoDetailsLocation {

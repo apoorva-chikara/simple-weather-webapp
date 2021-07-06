@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 /**
  * Services Import
@@ -12,6 +12,14 @@ import { LocationdetailsService } from "./services/request-location-details/loca
 import { Location } from "./interfaces/locations.interface";
 import { LocationDetails, NoDetailsLocation } from "./interfaces/location.details.interface";
 
+/**
+ * Angular Material 
+ */
+ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ListDetailComponent } from './components/list-detail/list-detail.component';
+import { ErrorhandlingService } from './services/ErrorHandling/errorhandling.service';
+import { ErrorAPI } from './interfaces/error.interface';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,10 +29,13 @@ export class AppComponent {
   title = 'weather-app';
   public searchValue: string = '';
   public locationList: Array<Location> = [];
+  public showSpinner: boolean = false;
 
   constructor(
     private locationListsService: LocationListsService,
-    private locationdetailsService: LocationdetailsService
+    private locationdetailsService: LocationdetailsService,
+    private matDialog: MatDialog,
+    private errorhandlingService: ErrorhandlingService
   ) {}
 
   public async logForm({searchBox}) {
@@ -33,14 +44,23 @@ export class AppComponent {
        alert('Please enter a valid city name');
      }
      try {
+      // show spinner
+      this.showSpinner = true;
       const res: Array<Location> =  await this.locationListsService.getLocationLists(searchBox).toPromise();
-
+      
+      //hide spinner
+      this.showSpinner = false;
       // empty before another search results loaded
       this.locationList.length = 0;
       this.locationList.push(...res);
-      console.log(res);
+
      } catch (error) {
-       console.error(error);
+       console.log(error.message);
+       const message: ErrorAPI = { Message: error.message, statusCode: 404};
+       this.errorhandlingService.errorHandling(message);
+
+       ////hide spinner
+       this.showSpinner = false;
      }
   }
 
@@ -49,10 +69,20 @@ export class AppComponent {
    */
   public async openDetails(locationId: string) {
     try {
-      const res = await this.locationdetailsService.getLocationDetails(locationId).toPromise();
-      console.log(res);
+      //show spinner
+      this.showSpinner = true;
+
+      const response: LocationDetails = await this.locationdetailsService.getLocationDetails(locationId).toPromise();
+
+      //hide spinner
+      this.showSpinner = false;
+
+      const dialLogRef = this.matDialog.open(ListDetailComponent, {
+        width: '700px',
+        data: {response}
+      })
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
     
   }
