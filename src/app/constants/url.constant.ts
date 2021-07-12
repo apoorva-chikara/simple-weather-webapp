@@ -1,4 +1,4 @@
 export class URLconstant {
     
-    public static WeatherApiBaseUrl = 'https://www.metaweather.com/api/';
+    public static WeatherApiBaseUrl = ' https://pure-brook-70076.herokuapp.com/';
 }
